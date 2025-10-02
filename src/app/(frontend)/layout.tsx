@@ -1,10 +1,10 @@
 import React from 'react'
-import './styles.css'
-import { ThemeProvider } from '@/components/layout/ThemeProvider'
+import '../../styles.css'
+import { ClientProviders } from '@/components/ClientProviders'
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  description: 'an ecommerce website built with Payload',
+  title: 'Enjoyable',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -13,14 +13,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   )
