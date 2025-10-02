@@ -1,67 +1,72 @@
-# Payload Blank Template
+# Enjoyable – Next.js E-commerce Platform
 
-This template comes configured with the bare minimum to get started on anything you need.
+<!-- optional image -->
 
-## Quick start
+## Overview
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+**Enjoyable** is an innovative e-commerce platform built with the latest web technologies. The project is designed to **test the speed and efficiency of modern frameworks and architectures** compared to traditional web development approaches.
 
-## Quick Start - local setup
+It leverages **Next.js App Router**, **Payload CMS**, and **n8n automation workflows** to provide a highly flexible and performant shopping experience.
 
-To spin up this template locally, follow these steps:
+### Key features include:
 
-### Clone
+- **Smart recommendation system** powered by AI and behavioral analytics.
+- **Multi-store management**, enabling sellers to run multiple storefronts from a single platform.
+- **Fast, modern front-end** using React, Tailwind CSS, and client/server component separation.
+- **Automated workflows** and integrations via n8n.
+- **Infinite scrolling and dynamic product loading** for seamless browsing.
+- **Customizable theme system** for personalized user experiences.
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+The purpose of this project is both **innovation and benchmarking**, exploring how new tech stacks can accelerate development and improve performance compared to traditional monolithic solutions.
 
-### Development
+## Tech Stack
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+| Layer                  | Technology                      | Purpose                                                              |
+| ---------------------- | ------------------------------- | -------------------------------------------------------------------- |
+| Frontend               | Next.js (App Router)            | Server/client components, routing, SSR/SSG                           |
+| CMS                    | Payload CMS                     | Headless CMS for product and content management                      |
+| Automation/Integration | n8n                             | Workflow automation, multi-store handling, external API integrations |
+| State Management       | React Query                     | Data fetching, caching, infinite queries                             |
+| Styling                | Tailwind CSS                    | Utility-first CSS framework                                          |
+| Icons/UI Components    | lucide-react, custom components | UI library for icons and reusable components                         |
+| Hosting/Deployment     | Vercel / Your choice            | Serverless deployment and scaling                                    |
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+## Features
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+### Core
 
-#### Docker (Optional)
+- Product catalog with **infinite scroll** and dynamic filters
+- **Responsive grid and list views** for products
+- Product cards with **stock indicators, discounts, and quick actions**
+- Seamless navigation and SSR for SEO
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+### Advanced
 
-To do so, follow these steps:
+- **Smart recommendation engine** to suggest products based on user behavior and AI predictions
+- **Multi-store management**, allowing sellers to manage multiple stores with independent inventories
+- **n8n-powered automation**, including:
+  - Order processing pipelines
+  - Customer notifications and emails
+  - Inventory syncing across multiple stores
 
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+### Experimental / Innovation
 
-## How it works
+- Testing **new React and Next.js patterns** (App Router, Server/Client Components)
+- Comparing performance and dev speed with traditional monolithic stacks
+- Modular architecture for future AI integrations and microservices
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+## Getting Started
 
-### Collections
+### Prerequisites
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+- Node.js 20+
+- PostgreSQL or MongoDB (for Payload CMS)
+- n8n setup (locally or cloud)
 
-- #### Users (Authentication)
+## Roadmap
 
-  Users are auth-enabled collections that have access to the admin panel.
-
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
-
-- #### Media
-
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
-
-### Docker
-
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
-
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
-
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+- Full AI-powered recommendation system
+- Multi-store order and inventory management
+- Customer analytics dashboard
+- Integration with payment gateways and shipping providers
+- Mobile app support (React Native / Next.js mobile)
