@@ -20,6 +20,25 @@ export const Product: CollectionConfig = {
       min: 0,
     },
     {
+      name: 'stock',
+      type: 'number',
+      min: 0,
+    },
+    {
+      name: 'discount',
+      type: 'number',
+      min: 0,
+      max: 99,
+    },
+    {
+      name: 'currency',
+      type: 'relationship',
+      relationTo: 'currency',
+      admin: {
+        appearance: 'drawer',
+      },
+    },
+    {
       name: 'seller',
       type: 'relationship',
       relationTo: 'users',
