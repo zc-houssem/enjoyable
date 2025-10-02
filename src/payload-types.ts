@@ -73,6 +73,7 @@ export interface Config {
     'product-category': ProductCategory;
     product: Product;
     review: Review;
+    currency: Currency;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -85,6 +86,7 @@ export interface Config {
     'product-category': ProductCategorySelect<false> | ProductCategorySelect<true>;
     product: ProductSelect<false> | ProductSelect<true>;
     review: ReviewSelect<false> | ReviewSelect<true>;
+    currency: CurrencySelect<false> | CurrencySelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -208,6 +210,9 @@ export interface Product {
     [k: string]: unknown;
   } | null;
   price?: number | null;
+  stock?: number | null;
+  discount?: number | null;
+  currency?: (number | null) | Currency;
   seller?: (number | null) | User;
   features?:
     | {
@@ -218,6 +223,19 @@ export interface Product {
   category?: (number | null) | ProductCategory;
   brand?: string | null;
   image?: (number | Media)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "currency".
+ */
+export interface Currency {
+  id: number;
+  label?: string | null;
+  symbol?: string | null;
+  alpha2?: string | null;
+  alpha3?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -277,6 +295,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'review';
         value: number | Review;
+      } | null)
+    | ({
+        relationTo: 'currency';
+        value: number | Currency;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -387,6 +409,9 @@ export interface ProductSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   price?: T;
+  stock?: T;
+  discount?: T;
+  currency?: T;
   seller?: T;
   features?:
     | T
@@ -408,6 +433,18 @@ export interface ReviewSelect<T extends boolean = true> {
   buyer?: T;
   rating?: T;
   comment?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "currency_select".
+ */
+export interface CurrencySelect<T extends boolean = true> {
+  label?: T;
+  symbol?: T;
+  alpha2?: T;
+  alpha3?: T;
   updatedAt?: T;
   createdAt?: T;
 }
