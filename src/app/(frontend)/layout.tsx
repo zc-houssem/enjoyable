@@ -1,5 +1,6 @@
 import React from 'react'
 import { ClientProviders } from '@/components/ClientProviders'
+import Layout from '@/components/layout/Layout'
 
 export const metadata = {
   description: 'an ecommerce website built with Payload',
@@ -9,5 +10,9 @@ export const metadata = {
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
-  return <ClientProviders>{children}</ClientProviders>
+  return (
+    <ClientProviders>
+      <Layout>{children}</Layout>
+    </ClientProviders>
+  )
 }

@@ -1,10 +1,5 @@
-import Layout from '@/components/layout/Layout'
-import ProductDetail from '@/components/ProductItem'
+import { ProductDetail } from '@/components/ProductItem'
 
-export default function Page() {
-  return (
-    <Layout>
-      <ProductDetail />
-    </Layout>
-  )
+export default function Page({ params }: { params: { id: string } }) {
+  return <ProductDetail id={params.id} />
 }
