@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { Cog, HelpCircle, LayoutDashboard, Package, Search, Store, Users } from 'lucide-react'
+import { Cog, HelpCircle, Home, Search } from 'lucide-react'
 import { NavSecondary } from './NavSecondary'
 import { UserNav } from './UserNav'
 import { NavMain } from './NavMain'
@@ -23,24 +23,9 @@ const data = {
   },
   navMain: [
     {
-      title: 'Dashboard',
+      title: 'Home',
       url: '/',
-      icon: LayoutDashboard,
-    },
-    {
-      title: 'Plans',
-      url: '/management/plans',
-      icon: Package,
-    },
-    {
-      title: 'Retails Stores',
-      url: '/management/stores',
-      icon: Store,
-    },
-    {
-      title: 'Users',
-      url: '/management/users',
-      icon: Users,
+      icon: Home,
     },
   ],
   navSecondary: [

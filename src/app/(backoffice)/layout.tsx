@@ -1,27 +1,13 @@
 import React from 'react'
-import '../../styles.css'
-import { ThemeProvider } from '@/components/layout/ThemeProvider'
+import { ClientProviders } from '@/components/ClientProviders'
 
 export const metadata = {
-  description: '',
+  description: 'an ecommerce website built with Payload',
   title: 'Enjoyable Backoffice',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
-  return (
-    <html lang="en">
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  )
+  return <ClientProviders>{children}</ClientProviders>
 }
