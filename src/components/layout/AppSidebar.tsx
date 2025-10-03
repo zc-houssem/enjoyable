@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { Cog, HelpCircle, Home, Search } from 'lucide-react'
+import { Cog, HelpCircle, Home, Search, Telescope } from 'lucide-react'
 import { NavSecondary } from './NavSecondary'
 import { UserNav } from './UserNav'
 import { NavMain } from './NavMain'
@@ -23,9 +23,9 @@ const data = {
   },
   navMain: [
     {
-      title: 'Home',
+      title: 'Explore',
       url: '/',
-      icon: Home,
+      icon: Telescope,
     },
   ],
   navSecondary: [
@@ -66,9 +66,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
-        <UserNav />
-      </SidebarFooter>
+      <SidebarFooter></SidebarFooter>
     </Sidebar>
   )
 }

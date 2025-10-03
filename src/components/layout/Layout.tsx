@@ -26,7 +26,7 @@ export default function Layout({ className, children }: LayoutProps) {
         <SiteHeader />
         <div className="flex flex-col flex-1 overflow-hidden container mx-auto">
           <div className="@container/main flex flex-col flex-1 overflow-hidden gap-2">
-            <main className="flex flex-col flex-1 gap-4 overflow-hidden">{children}</main>
+            <main className="flex flex-col flex-1 gap-4 overflow-hidden px-5">{children}</main>
           </div>
         </div>
       </SidebarInset>

@@ -41,11 +41,11 @@ export const ProductExploreCard = ({ className, product }: ProductExploreCardPro
           />
         )}
 
-        {product.discount && (
+        {product.discount ? (
           <div className="absolute left-3 top-3 rounded-full bg-red-500 px-3 py-1 text-xs font-semibold text-white">
             -{product.discount}%
           </div>
-        )}
+        ) : null}
         <button className="absolute right-3 top-3 rounded-full bg-background/80 p-2 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
           <Heart className="h-4 w-4" />
         </button>

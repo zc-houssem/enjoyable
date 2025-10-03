@@ -45,7 +45,7 @@ export default function ProductExplore() {
 
   return (
     <div className="flex flex-col flex-1 w-full overflow-hidden">
-      <main className="flex flex-col flex-1 w-full overflow-hidden mx-auto py-8">
+      <main className="flex flex-col flex-1 w-full overflow-hidden mx-auto pt-8">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
@@ -81,14 +81,14 @@ export default function ProductExplore() {
         </div>
 
         {/* Stats */}
-        <div className="my-6 flex items-center gap-6 rounded-lg bg-card p-4">
+        {/* <div className="my-6 flex items-center gap-6 rounded-lg bg-card p-4">
           <div className="flex items-center gap-2">
             <TrendingUp className="h-4 w-4 text-green-500" />
             <span className="text-sm">
               <span className="font-semibold">{products.length}</span> products found
             </span>
           </div>
-        </div>
+        </div> */}
 
         {/* Product Grid */}
         <div className="flex flex-col flex-1 overflow-auto no-scrollbar">

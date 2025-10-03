@@ -1,5 +1,3 @@
-import './styles.css'
-
 export const metadata = {
   description: 'an ecommerce website built with Payload',
   title: 'Enjoyable Backoffice',

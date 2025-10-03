@@ -3,6 +3,9 @@
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { ModeToggle } from '@/components/layout/ModeToggle'
+import { Bell, ShoppingCart } from 'lucide-react'
+import { UserNav } from './UserNav'
+import { BadgeIcon } from '../BadgeIcon'
 
 export function SiteHeader() {
   return (
@@ -10,8 +13,13 @@ export function SiteHeader() {
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
         <SidebarTrigger className="-ml-1" />
         <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4" />
-        <div className="ml-auto flex items-center gap-2">
-          <ModeToggle className="-mr-1" />
+        <div className="flex items-center gap-2 justify-between w-full">
+          <div className="ml-auto flex items-center gap-2">
+            <BadgeIcon icon={ShoppingCart}>10</BadgeIcon>
+            <BadgeIcon icon={Bell}>10</BadgeIcon>
+          </div>
+          {/* <ModeToggle /> */}
+          <UserNav className="ml-4" />
         </div>
       </div>
     </header>
