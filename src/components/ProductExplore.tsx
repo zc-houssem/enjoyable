@@ -1,17 +1,15 @@
 'use client'
 
-import React, { useState, useRef, useEffect } from 'react'
+import React from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Heart, Filter, Grid3x3, LayoutGrid, TrendingUp } from 'lucide-react'
+import { Filter, Grid3x3, LayoutGrid, TrendingUp } from 'lucide-react'
 import { Product } from '@/payload-types'
-import Image from 'next/image'
+import { ProductExploreCard } from './ProductExploreCard'
 
 export default function ProductExplore() {
-  const router = useRouter()
-  const observerTarget = useRef<HTMLDivElement>(null)
-  const [viewMode, setViewMode] = useState<'grid' | 'large'>('grid')
+  const observerTarget = React.useRef<HTMLDivElement>(null)
+  const [viewMode, setViewMode] = React.useState<'grid' | 'large'>('grid')
 
   // Infinite query with React Query
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
@@ -29,7 +27,7 @@ export default function ProductExplore() {
   const products = data?.pages.flatMap((page) => page.docs) || []
 
   // Intersection observer for infinite scroll
-  useEffect(() => {
+  React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
@@ -100,54 +98,8 @@ export default function ProductExplore() {
               : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
           }`}
         >
-          {products.map((product: Product) => (
-            <div
-              key={product.id}
-              className="group relative overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-foreground/20 hover:shadow-lg"
-            >
-              {/* Image */}
-              <div className="relative aspect-square overflow-hidden bg-muted">
-                <Image
-                  src={product.image || '/placeholder.svg'}
-                  alt={product.title}
-                  fill
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                {product.discount && (
-                  <div className="absolute left-3 top-3 rounded-full bg-red-500 px-3 py-1 text-xs font-semibold text-white">
-                    -{product.discount}%
-                  </div>
-                )}
-                <button className="absolute right-3 top-3 rounded-full bg-background/80 p-2 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
-                  <Heart className="h-4 w-4" />
-                </button>
-              </div>
-
-              {/* Info */}
-              <div className="p-4">
-                <p className="text-xs text-muted-foreground">{product.brand}</p>
-                <h3 className="mt-1 line-clamp-2 font-semibold leading-tight">{product.title}</h3>
-                <div className="mt-2 flex items-center gap-2">
-                  <span className="text-xl font-bold">${product.price}</span>
-                  {product.discount && product.discount > 0 && product.price ? (
-                    <span className="text-sm text-muted-foreground line-through">
-                      ${product.price + product.discount}
-                    </span>
-                  ) : null}
-                </div>
-                <div className="mt-2 flex items-center gap-2">
-                  <div
-                    className={`h-2 w-2 rounded-full ${
-                      (product?.stock ?? 0) > 0 ? 'bg-green-500' : 'bg-red-500'
-                    }`}
-                  />
-
-                  <span className="text-xs text-muted-foreground">
-                    {(product?.stock ?? 0) > 0 ? 'In Stock' : 'Out of Stock'}
-                  </span>
-                </div>
-              </div>
-            </div>
+          {products.map((product) => (
+            <ProductExploreCard key={product.id} product={product} />
           ))}
         </div>
 
