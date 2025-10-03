@@ -44,8 +44,8 @@ export default function ProductExplore() {
   }, [fetchNextPage, hasNextPage, isFetchingNextPage])
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <main className="mx-auto max-w-[1600px] px-6 py-8">
+    <div className="flex flex-col flex-1 w-full overflow-hidden">
+      <main className="flex flex-col flex-1 w-full overflow-hidden mx-auto py-8">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
@@ -91,37 +91,37 @@ export default function ProductExplore() {
         </div>
 
         {/* Product Grid */}
-        <div
-          className={`grid gap-6 ${
-            viewMode === 'grid'
-              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-          }`}
-        >
-          {products.map((product) => (
-            <ProductExploreCard key={product.id} product={product} />
-          ))}
-        </div>
+        <div className="flex flex-col flex-1 overflow-auto no-scrollbar">
+          <div
+            className={` w-full grid gap-6 ${
+              viewMode === 'grid'
+                ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+            }`}
+          >
+            {products.map((product) => (
+              <ProductExploreCard key={product.id} product={product} />
+            ))}
+            {/* Loading */}
+            {isFetchingNextPage && (
+              <div className="mt-12 flex justify-center">
+                <div className="flex items-center gap-3 rounded-lg bg-card px-6 py-4">
+                  <div className="h-5 w-5 animate-spin rounded-full border-2 border-foreground border-t-transparent" />
+                  <span className="text-sm text-muted-foreground">Loading more products...</span>
+                </div>
+              </div>
+            )}
 
-        {/* Loading */}
-        {isFetchingNextPage && (
-          <div className="mt-12 flex justify-center">
-            <div className="flex items-center gap-3 rounded-lg bg-card px-6 py-4">
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-foreground border-t-transparent" />
-              <span className="text-sm text-muted-foreground">Loading more products...</span>
+            {/* Intersection observer target */}
+            <div ref={observerTarget} className="h-10" />
+          </div>
+          {/* End message */}
+          {!hasNextPage && products.length > 0 && (
+            <div className="mt-12 text-center">
+              <p className="text-muted-foreground">You&apos;ve reached the end of our collection</p>
             </div>
-          </div>
-        )}
-
-        {/* Intersection observer target */}
-        <div ref={observerTarget} className="h-10" />
-
-        {/* End message */}
-        {!hasNextPage && products.length > 0 && (
-          <div className="mt-12 text-center">
-            <p className="text-muted-foreground">You&apos;ve reached the end of our collection</p>
-          </div>
-        )}
+          )}
+        </div>
       </main>
     </div>
   )
