@@ -10,9 +10,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { Cog, HelpCircle, Home, Search, Telescope } from 'lucide-react'
+import { Cog, Gem, Heart, HelpCircle, Package, Search, ShoppingCart, Telescope } from 'lucide-react'
 import { NavSecondary } from './NavSecondary'
-import { UserNav } from './UserNav'
 import { NavMain } from './NavMain'
 
 const data = {
@@ -26,6 +25,26 @@ const data = {
       title: 'Explore',
       url: '/',
       icon: Telescope,
+    },
+    {
+      title: 'Shopping Cart',
+      url: '/shopping-cart',
+      icon: ShoppingCart,
+    },
+    {
+      title: 'Wishlist',
+      url: '/',
+      icon: Heart,
+    },
+    {
+      title: 'Orders',
+      url: '/',
+      icon: Package,
+    },
+    {
+      title: 'Sellers',
+      url: '/',
+      icon: Gem,
     },
   ],
   navSecondary: [
