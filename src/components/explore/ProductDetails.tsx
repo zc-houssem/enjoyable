@@ -8,6 +8,8 @@ import { ChevronLeft, ChevronRight, DollarSign, Layers, ShoppingCart, Heart } fr
 import { cn } from '@/lib/utils'
 import { Media } from '@/payload-types'
 import Image from 'next/image'
+import { useCartStore } from '@/stores/useCartStore'
+import { toast } from 'sonner'
 
 interface ProductDetailsProps {
   className?: string
@@ -16,7 +18,6 @@ interface ProductDetailsProps {
 
 export const ProductDetails = ({ className, id }: ProductDetailsProps) => {
   const [currentImage, setCurrentImage] = useState(0)
-
   const {
     data: product,
     isLoading,
@@ -30,13 +31,14 @@ export const ProductDetails = ({ className, id }: ProductDetailsProps) => {
     },
   })
 
+  // ✅ Zustand store
+  const cartStore = useCartStore()
+
   if (isLoading) return <p>Loading product...</p>
   if (error) return <p className="text-red-500">Failed to load product.</p>
   if (!product) return <p>No product found</p>
 
-  // ✅ Extract fields from payload
   const { title, description, price, stock, brand, category, features, image, seller } = product
-
   const productImages = image?.map((img: Media) => img.url) || []
 
   const nextImage = () => {
@@ -45,6 +47,30 @@ export const ProductDetails = ({ className, id }: ProductDetailsProps) => {
 
   const prevImage = () => {
     setCurrentImage((prev) => (prev - 1 + productImages.length) % productImages.length)
+  }
+
+  const numericId = Number(id)
+  const inCart = cartStore.cart.some((item) => item.id === numericId)
+  const inWishlist = cartStore.wishlist.includes(numericId)
+
+  const handleCartClick = () => {
+    if (inCart) {
+      cartStore.removeFromCart(numericId)
+      toast.info('Removed from cart')
+    } else {
+      cartStore.addToCart(numericId)
+      toast.success('Added to cart')
+    }
+  }
+
+  const handleWishlistClick = () => {
+    if (inWishlist) {
+      cartStore.removeFromWishlist(numericId)
+      toast.info('Removed from wishlist')
+    } else {
+      cartStore.addToWishlist(numericId)
+      toast.success('Added to wishlist')
+    }
   }
 
   return (
@@ -165,13 +191,17 @@ export const ProductDetails = ({ className, id }: ProductDetailsProps) => {
 
           {/* Actions */}
           <div className="flex gap-3">
-            <Button className="gap-2">
+            <Button onClick={handleCartClick} className="gap-2">
               <ShoppingCart className="h-4 w-4" />
-              Add to Cart
+              {inCart ? 'Remove from Cart' : 'Add to Cart'}
             </Button>
-            <Button variant="outline" className="gap-2 bg-transparent">
+            <Button
+              onClick={handleWishlistClick}
+              variant={inWishlist ? 'default' : 'outline'}
+              className={cn('gap-2', inWishlist ? 'bg-red-500 text-white' : 'bg-transparent')}
+            >
               <Heart className="h-4 w-4" />
-              Wishlist
+              {inWishlist ? 'In Wishlist' : 'Add to Wishlist'}
             </Button>
           </div>
 
