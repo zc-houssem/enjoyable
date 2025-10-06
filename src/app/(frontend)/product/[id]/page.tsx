@@ -1,5 +1,5 @@
-import { ProductDetail } from '@/components/ProductItem'
+import { ProductDetails } from '@/components/explore/ProductDetails'
 
 export default function Page({ params }: { params: { id: string } }) {
-  return <ProductDetail id={params.id} />
+  return <ProductDetails id={params.id} />
 }

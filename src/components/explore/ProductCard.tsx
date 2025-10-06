@@ -3,14 +3,14 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Media, Product } from '@/payload-types'
-import { Heart } from 'lucide-react'
+import { Heart, Plus } from 'lucide-react'
 
-interface ProductExploreCardProps {
+interface ProductCardProps {
   className?: string
   product: Product
 }
 
-export const ProductExploreCard = ({ className, product }: ProductExploreCardProps) => {
+export const ProductCard = ({ className, product }: ProductCardProps) => {
   const router = useRouter()
   const url = React.useMemo(() => (product.image as Media[])?.[0]?.url, [product])
 
@@ -46,8 +46,21 @@ export const ProductExploreCard = ({ className, product }: ProductExploreCardPro
             -{product.discount}%
           </div>
         ) : null}
-        <button className="absolute right-3 top-3 rounded-full bg-background/80 p-2 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
+        <button
+          className="absolute right-3 top-3 rounded-full bg-background/80 p-2 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100 cursor-pointer hover:bg-primary/50"
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+        >
           <Heart className="h-4 w-4" />
+        </button>
+        <button
+          className="absolute right-12 top-3 rounded-full bg-background/80 p-2 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100 cursor-pointer hover:bg-primary/50"
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+        >
+          <Plus className="h-4 w-4" />
         </button>
       </div>
 

@@ -3,7 +3,7 @@ import { getPayload } from 'payload'
 import React from 'react'
 
 import config from '@/payload.config'
-import ProductExplore from '@/components/ProductExplore'
+import ProductExplore from '@/components/explore/ProductExplore'
 
 export default async function HomePage() {
   const headers = await getHeaders()
